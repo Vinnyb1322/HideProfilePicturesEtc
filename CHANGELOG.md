@@ -1,3 +1,9 @@
+## [1.0.0-dev.2](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.1...v1.0.0-dev.2) (2026-10-18)
+
+### ✨ New Features
+
+* add swipe to home feed patch ([b3d35c3](https://github.com/Vinnyb1322/HideProfilePicturesEtc/commit/b3d35c3dd68a96de746aec8d7fd115162a56606d))
+
 ## 1.0.0-dev.1 (2026-10-18)
 
 ### ✨ New Features

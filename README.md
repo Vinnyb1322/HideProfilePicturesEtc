@@ -14,9 +14,9 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.0.0-dev.1](https://github.com/Vinnyb1322/HideProfilePicturesEtc/releases/tag/v1.0.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;9 patches total
+> **[v1.0.0-dev.2](https://github.com/Vinnyb1322/HideProfilePicturesEtc/releases/tag/v1.0.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;10 patches total
 <details open>
-<summary>📦 Reddit&nbsp;&nbsp;•&nbsp;&nbsp;9 patches</summary>
+<summary>📦 Reddit&nbsp;&nbsp;•&nbsp;&nbsp;10 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -35,6 +35,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 | [Hide search trending](#hide-search-trending) | Hides the trending searches and trending communities in search. |  |
 | [Hide sidebar items](#hide-sidebar-items) | Hides Popular, News, Latest, Discover communities, Start a community, Games on Reddit, Reddit Pro and Resources from the community sidebar. |  |
 | [Show post author](#show-post-author) | Shows the username of the poster after the subreddit, time posted and link of posts in the feed. |  |
+| [Swipe to home feed](#swipe-to-home-feed) | Swiping right on a post's comments or in the full screen media viewer goes straight back to the home feed. |  |
 
 </details>
 
