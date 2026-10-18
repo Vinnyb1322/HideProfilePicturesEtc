@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.0.0-dev.4",
+  "version": "1.0.0-dev.5",
   "patches": [
     {
       "name": "Block breaking news notifications",
@@ -281,6 +281,49 @@
         }
       ],
       "options": []
+    },
+    {
+      "name": "Sort home feed",
+      "description": "Sorts the home feed like old.reddit.com, by Hot by default, instead of the personalized ranking that changes on every refresh.",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": [
+            "970b91143813b4c9d5f3634f672c9fcaa5621b4efaaedafd6c235cbbb869736f"
+          ],
+          "targets": [
+            {
+              "version": "2026.38.0",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": 29,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "sort",
+          "title": "Sort",
+          "description": "How to sort the home feed.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "HOT",
+          "values": {
+            "Hot": "HOT",
+            "New": "NEW",
+            "Rising": "RISING",
+            "Top": "TOP"
+          }
+        }
+      ]
     },
     {
       "name": "Swipe to home feed",

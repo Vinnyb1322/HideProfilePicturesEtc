@@ -1,3 +1,9 @@
+## [1.0.0-dev.5](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.4...v1.0.0-dev.5) (2026-10-18)
+
+### ✨ New Features
+
+* add Sort home feed patch ([3ff569b](https://github.com/Vinnyb1322/HideProfilePicturesEtc/commit/3ff569bf0c10b219f478a9cfeacf96083168592d))
+
 ## [1.0.0-dev.4](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.3...v1.0.0-dev.4) (2026-10-18)
 
 ### ✨ New Features
