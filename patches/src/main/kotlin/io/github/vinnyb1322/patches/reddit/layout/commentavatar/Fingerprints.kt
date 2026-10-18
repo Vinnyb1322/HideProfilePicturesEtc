@@ -10,8 +10,12 @@ import com.android.tools.smali.dexlib2.AccessFlags
 internal object CommentHeaderAvatarFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL),
     returnType = "V",
-    parameters = listOf("L", "L", "Lkotlin/jvm/functions/Function1;", "L", "I"),
     filters = listOf(
         string("user_avatar_header")
-    )
+    ),
+    custom = { method, _ ->
+        // (avatar slot, CommentHeaderViewState, Function1 onClick, ...). Later versions add parameters.
+        val types = method.parameterTypes.map { it.toString() }
+        types.size >= 5 && types[2] == "Lkotlin/jvm/functions/Function1;"
+    }
 )

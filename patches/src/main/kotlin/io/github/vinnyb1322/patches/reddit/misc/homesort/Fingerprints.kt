@@ -13,14 +13,18 @@ import com.android.tools.smali.dexlib2.Opcode
  * which the app leaves unset so the server picks its personalized ranking.
  * The "Latest" feed is the same `homeV3` query with the sort set to NEW.
  */
-internal val HOME_FEED_QUERIES = listOf(
-    "HomeFeedSdui",
+internal const val MAIN_HOME_FEED_QUERY = "HomeFeedSdui"
+
+/**
+ * Other queries that load the home feed. Not every app version has all of them.
+ */
+internal val OTHER_HOME_FEED_QUERIES = listOf(
     "HomeFeedSduiBg",
-    "HomeFeedSduiPrewarm",
+    "HomeFeedSduiPrewarm", // Removed in 2026.42.0.
     "HomeFeedWithDefer"
 )
 
-private fun homeFeedQueryDocumentFingerprint(queryName: String) = Fingerprint(
+internal fun homeFeedQueryDocumentFingerprint(queryName: String) = Fingerprint(
     returnType = "Ljava/lang/String;",
     parameters = listOf(),
     filters = listOf(
@@ -32,8 +36,8 @@ private fun homeFeedQueryDocumentFingerprint(queryName: String) = Fingerprint(
  * Writes the variables of a home feed query. Matches the read of the sort field,
  * the check that it is set, and the "sort" key that follows.
  */
-internal fun homeFeedQuerySortFingerprint(queryName: String) = Fingerprint(
-    classFingerprint = homeFeedQueryDocumentFingerprint(queryName),
+internal fun homeFeedQuerySortFingerprint(documentFingerprint: Fingerprint) = Fingerprint(
+    classFingerprint = documentFingerprint,
     returnType = "V",
     filters = listOf(
         fieldAccess(opcode = Opcode.IGET_OBJECT, definingClass = "this"),

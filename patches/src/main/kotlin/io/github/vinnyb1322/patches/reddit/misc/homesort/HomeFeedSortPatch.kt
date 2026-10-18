@@ -33,8 +33,12 @@ val homeFeedSortPatch = bytecodePatch(
     )
 
     execute {
-        HOME_FEED_QUERIES.forEach { queryName ->
-            homeFeedQuerySortFingerprint(queryName).let {
+        (listOf(MAIN_HOME_FEED_QUERY) + OTHER_HOME_FEED_QUERIES).forEach { queryName ->
+            val documentFingerprint = homeFeedQueryDocumentFingerprint(queryName)
+            // Only the main query is required.
+            if (queryName != MAIN_HOME_FEED_QUERY && documentFingerprint.methodOrNull == null) return@forEach
+
+            homeFeedQuerySortFingerprint(documentFingerprint).let {
                 it.method.apply {
                     val readIndex = it.instructionMatches[0].index
                     val instanceOfIndex = it.instructionMatches[1].index

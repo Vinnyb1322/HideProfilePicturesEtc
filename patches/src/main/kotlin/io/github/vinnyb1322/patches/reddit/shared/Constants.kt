@@ -19,6 +19,11 @@ internal object Constants {
         ),
         targets = listOf(
             AppTarget(
+                version = "2026.42.0",
+                minSdk = 29
+            ),
+            // Last version supported by Adobo 1.5.0.
+            AppTarget(
                 version = "2026.38.0",
                 minSdk = 29
             )
