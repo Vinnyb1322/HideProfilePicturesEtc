@@ -1,3 +1,9 @@
+## [1.0.0-dev.4](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.3...v1.0.0-dev.4) (2026-10-18)
+
+### ✨ New Features
+
+* add Don't skip to comments patch ([a13e782](https://github.com/Vinnyb1322/HideProfilePicturesEtc/commit/a13e78233ef0845802aa2276615c48efca64389e))
+
 ## [1.0.0-dev.3](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.2...v1.0.0-dev.3) (2026-10-18)
 
 ### 🐛 Bug Fixes

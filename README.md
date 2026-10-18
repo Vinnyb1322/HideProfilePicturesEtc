@@ -14,9 +14,9 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.0.0-dev.3](https://github.com/Vinnyb1322/HideProfilePicturesEtc/releases/tag/v1.0.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;10 patches total
+> **[v1.0.0-dev.4](https://github.com/Vinnyb1322/HideProfilePicturesEtc/releases/tag/v1.0.0-dev.4)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;11 patches total
 <details open>
-<summary>📦 Reddit&nbsp;&nbsp;•&nbsp;&nbsp;10 patches</summary>
+<summary>📦 Reddit&nbsp;&nbsp;•&nbsp;&nbsp;11 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -28,6 +28,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 |----------|----------------|-----------|
 | [Block breaking news notifications](#block-breaking-news-notifications) | Blocks breaking news push notifications, including breaking sports and entertainment news. |  |
 | [Disable swiping to next post](#disable-swiping-to-next-post) | Disables swiping up in the full screen media viewer to go through more posts. |  |
+| [Don't skip to comments](#don-t-skip-to-comments) | Opens posts at the top from the comment button in the feed, instead of jumping past the post to the comments. |  |
 | [Hide Create button](#hide-create-button) | Hides the Create button from the bottom navigation bar. |  |
 | [Hide comment avatars](#hide-comment-avatars) | Hides profile pictures in comment threads. |  |
 | [Hide related posts](#hide-related-posts) | Hides the related posts shown after the end of a comment section. |  |
