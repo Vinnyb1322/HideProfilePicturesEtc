@@ -1,3 +1,9 @@
+## [1.0.0-dev.7](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.6...v1.0.0-dev.7) (2026-10-18)
+
+### ✨ New Features
+
+* add Hide suggested communities patch ([de44473](https://github.com/Vinnyb1322/HideProfilePicturesEtc/commit/de44473161529fcfc5cf263596371509c49a5e5f))
+
 ## [1.0.0-dev.6](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.5...v1.0.0-dev.6) (2026-10-18)
 
 ### 🐛 Bug Fixes

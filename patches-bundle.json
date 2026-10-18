@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-18T15:40:38",
-  "description": "## [1.0.0-dev.6](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.5...v1.0.0-dev.6) (2026-10-18)\n\n### 🐛 Bug Fixes\n\n* support Reddit 2026.42.0 ([cfe38be](https://github.com/Vinnyb1322/HideProfilePicturesEtc/commit/cfe38be785005810ade7628afa238eea58f37bff))",
-  "download_url": "https://github.com/Vinnyb1322/HideProfilePicturesEtc/releases/download/v1.0.0-dev.6/patches-1.0.0-dev.6.mpp",
+  "created_at": "2026-10-18T20:32:25",
+  "description": "## [1.0.0-dev.7](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.6...v1.0.0-dev.7) (2026-10-18)\n\n### ✨ New Features\n\n* add Hide suggested communities patch ([de44473](https://github.com/Vinnyb1322/HideProfilePicturesEtc/commit/de44473161529fcfc5cf263596371509c49a5e5f))",
+  "download_url": "https://github.com/Vinnyb1322/HideProfilePicturesEtc/releases/download/v1.0.0-dev.7/patches-1.0.0-dev.7.mpp",
   "signature_download_url": "",
-  "version": "1.0.0-dev.6"
+  "version": "1.0.0-dev.7"
 }

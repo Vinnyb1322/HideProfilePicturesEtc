@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.0.0-dev.6",
+  "version": "1.0.0-dev.7",
   "patches": [
     {
       "name": "Block breaking news notifications",
@@ -285,6 +285,41 @@
     {
       "name": "Hide sidebar items",
       "description": "Hides Popular, News, Latest, Discover communities, Start a community, Games on Reddit, Reddit Pro and Resources from the community sidebar.",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": [
+            "970b91143813b4c9d5f3634f672c9fcaa5621b4efaaedafd6c235cbbb869736f"
+          ],
+          "targets": [
+            {
+              "version": "2026.42.0",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": 29,
+              "description": null
+            },
+            {
+              "version": "2026.38.0",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": 29,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide suggested communities",
+      "description": "Hides the suggested communities shown in the feed of a subreddit.",
       "default": true,
       "category": null,
       "compatiblePackages": [
