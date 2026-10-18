@@ -7,6 +7,38 @@ public final class ShowPostAuthorPatch {
     private static final String SEPARATOR = " \u2022 ";
 
     /**
+     * Injection point. Called where the home feed post header reads the link domain.
+     *
+     * @param header The header model, whose toString() looks like
+     *               {@code MetadataHeaderElement(linkId=t3_abc, uniqueId=..., promoted=false, ...,
+     *               authorNameWithPrefix=u/foo, ..., details=r/pics, ..., mediaDomain=example.com, ...)}.
+     * @return The text to show in place of the domain. Empty if there is nothing to show.
+     */
+    public static String getDomainWithAuthor(Object header) {
+        String domain = "";
+        try {
+            String headerString = header.toString();
+            String parsedDomain = Utils.getToStringValue(headerString, "mediaDomain");
+            if (parsedDomain != null && !parsedDomain.equals("null")) domain = parsedDomain;
+
+            if ("true".equals(Utils.getToStringValue(headerString, "promoted"))) return domain;
+
+            String author = Utils.getToStringValue(headerString, "authorNameWithPrefix");
+            if (author == null || author.isEmpty() || author.equals("null")) return domain;
+            if (!author.startsWith("u/")) author = "u/" + author;
+
+            // In user profiles the header already shows the author instead of a subreddit.
+            String details = Utils.getToStringValue(headerString, "details");
+            if (author.equalsIgnoreCase(details)) return domain;
+
+            return domain.isEmpty() ? author : domain + SEPARATOR + author;
+        } catch (Exception ex) {
+            Utils.logException("getDomainWithAuthor failure", ex);
+            return domain;
+        }
+    }
+
+    /**
      * Injection point.
      *
      * @param domain   The link domain shown in the metadata row, or null for posts without a link.
