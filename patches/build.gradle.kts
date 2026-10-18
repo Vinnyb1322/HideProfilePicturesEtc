@@ -1,14 +1,13 @@
-group = "app.template"
+group = "io.github.vinnyb1322"
 
 patches {
-    // TODO: Update this section with your project details.
     about {
-        name = "UserXYZ Patches"
-        description = "Patches for apps I like"
-        source = "git@github.com:UserXYZ/morphe-patches.git"
-        author = "Awesome dev"
-        contact = "na"
-        website = "na"
+        name = "Vince's Patches"
+        description = "Unofficial Reddit patches for use with Morphe"
+        source = "git@github.com:Vinnyb1322/HideProfilePicturesEtc.git"
+        author = "Vinnyb1322"
+        contact = "https://github.com/Vinnyb1322/HideProfilePicturesEtc/issues"
+        website = "https://github.com/Vinnyb1322/HideProfilePicturesEtc"
         license = "GPLv3"
     }
 }

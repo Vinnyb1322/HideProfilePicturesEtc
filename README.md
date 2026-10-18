@@ -1,16 +1,15 @@
-# 👋🧩 Morphe Patches template
+# 🧩 Vince's Patches
 
-Template repository for Morphe Patches.
+Unofficial Reddit patches for use with [Morphe](https://github.com/MorpheApp).
+This project is not affiliated with or endorsed by the Morphe project.
 
 ## ❓ About
 
-Patches for apps I like.
-
-<!-- TODO: Update this about section with a brief introduction/summary about this repo and what it offers. -->
+Patches that tweak the Reddit app, such as hiding profile pictures and other clutter.
 
 ### How to use these patches
 
-Click here to add these patches to Morphe: https://morphe.software/add-source?github=xyz-user/xyz-patches
+Click here to add these patches to Morphe: https://morphe.software/add-source?github=Vinnyb1322/HideProfilePicturesEtc
 
 ## 🩹 Patches list
 
@@ -88,4 +87,4 @@ See the [Morphe documentation](https://github.com/MorpheApp/morphe-documentation
 
 ## 📜 License
 
-UserXYZ Patches are licensed under the [GNU General Public License v3.0](LICENSE)
+Vince's Patches are licensed under the [GNU General Public License v3.0](LICENSE)
