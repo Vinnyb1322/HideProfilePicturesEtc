@@ -1,3 +1,9 @@
+## [1.0.0-dev.3](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.2...v1.0.0-dev.3) (2026-10-18)
+
+### 🐛 Bug Fixes
+
+* show post author in the home feed ([d28f904](https://github.com/Vinnyb1322/HideProfilePicturesEtc/commit/d28f904dbde0269dff45006399e3d970e8b485cf))
+
 ## [1.0.0-dev.2](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.1...v1.0.0-dev.2) (2026-10-18)
 
 ### ✨ New Features

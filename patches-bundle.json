@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-18T13:42:28",
-  "description": "## [1.0.0-dev.2](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.1...v1.0.0-dev.2) (2026-10-18)\n\n### ✨ New Features\n\n* add swipe to home feed patch ([b3d35c3](https://github.com/Vinnyb1322/HideProfilePicturesEtc/commit/b3d35c3dd68a96de746aec8d7fd115162a56606d))",
-  "download_url": "https://github.com/Vinnyb1322/HideProfilePicturesEtc/releases/download/v1.0.0-dev.2/patches-1.0.0-dev.2.mpp",
+  "created_at": "2026-10-18T14:46:59",
+  "description": "## [1.0.0-dev.3](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.2...v1.0.0-dev.3) (2026-10-18)\n\n### 🐛 Bug Fixes\n\n* show post author in the home feed ([d28f904](https://github.com/Vinnyb1322/HideProfilePicturesEtc/commit/d28f904dbde0269dff45006399e3d970e8b485cf))",
+  "download_url": "https://github.com/Vinnyb1322/HideProfilePicturesEtc/releases/download/v1.0.0-dev.3/patches-1.0.0-dev.3.mpp",
   "signature_download_url": "",
-  "version": "1.0.0-dev.2"
+  "version": "1.0.0-dev.3"
 }
