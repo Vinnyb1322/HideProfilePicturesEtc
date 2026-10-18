@@ -1,3 +1,9 @@
+## [1.0.0-dev.6](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.5...v1.0.0-dev.6) (2026-10-18)
+
+### 🐛 Bug Fixes
+
+* support Reddit 2026.42.0 ([cfe38be](https://github.com/Vinnyb1322/HideProfilePicturesEtc/commit/cfe38be785005810ade7628afa238eea58f37bff))
+
 ## [1.0.0-dev.5](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.4...v1.0.0-dev.5) (2026-10-18)
 
 ### ✨ New Features
