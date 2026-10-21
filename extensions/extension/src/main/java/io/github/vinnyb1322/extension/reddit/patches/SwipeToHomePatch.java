@@ -30,6 +30,8 @@ import io.github.vinnyb1322.extension.reddit.Utils;
  * Touches are watched through the activity window callback without consuming them.
  * Only swipes that start near the left edge count, so swiping through the images of a gallery
  * keeps working. A swipe is also ignored if it starts on a view that scrolls horizontally.
+ * After a pinch or double tap, which zoom in on pictures, the swipe is off until another screen
+ * is shown so that dragging pans the picture.
  */
 @SuppressWarnings("unused")
 public final class SwipeToHomePatch {
@@ -114,23 +116,25 @@ public final class SwipeToHomePatch {
     }
 
     /**
-     * @return If the swipe should work in this activity right now.
+     * @return The screen the swipe works on right now: the media activity itself, or the current
+     * screen of the main activity if it is a post or media screen. Null if the swipe does not work.
      */
-    private static boolean isSwipeEnabled(Activity activity) {
+    private static Object getSwipeScreen(Activity activity) {
         try {
-            if (isMediaActivity(activity)) return true;
-            if (!isMainActivity(activity)) return false;
+            if (isMediaActivity(activity)) return activity;
+            if (!isMainActivity(activity)) return null;
 
             Object bottomNavScreen = getBottomNavScreen(activity);
-            if (bottomNavScreen == null) return false;
+            if (bottomNavScreen == null) return null;
             if (getCurrentScreenMethod == null) {
                 getCurrentScreenMethod = bottomNavScreen.getClass().getMethod("getCurrentScreen");
             }
-            return isSwipeScreen(getCurrentScreenMethod.invoke(bottomNavScreen));
+            Object currentScreen = getCurrentScreenMethod.invoke(bottomNavScreen);
+            return isSwipeScreen(currentScreen) ? currentScreen : null;
         } catch (Exception ex) {
-            Utils.logException("isSwipeEnabled failure", ex);
+            Utils.logException("getSwipeScreen failure", ex);
         }
-        return false;
+        return null;
     }
 
     private static boolean isSwipeScreen(Object screen) {
@@ -284,6 +288,15 @@ public final class SwipeToHomePatch {
         private float downY;
         private long downTime;
 
+        /**
+         * Screen where a picture may be zoomed in. A one finger drag there pans the picture,
+         * so the swipe is off until another screen is shown.
+         */
+        private WeakReference<Object> zoomedScreen = new WeakReference<>(null);
+        private long lastTapTime;
+        private float lastTapX;
+        private float lastTapY;
+
         SwipeWindowCallback(Activity activity, Window.Callback wrapped) {
             this.activity = new WeakReference<>(activity);
             this.wrapped = wrapped;
@@ -293,27 +306,55 @@ public final class SwipeToHomePatch {
             Activity activity = this.activity.get();
             if (activity == null) return;
 
+            ViewConfiguration configuration = ViewConfiguration.get(activity);
+
             switch (event.getActionMasked()) {
-                case MotionEvent.ACTION_DOWN:
-                    int screenWidth = activity.getWindow().getDecorView().getWidth();
-                    tracking = event.getRawX() <= screenWidth * START_EDGE_FRACTION
-                            && isSwipeEnabled(activity);
+                case MotionEvent.ACTION_DOWN: {
                     swiping = false;
                     downX = event.getRawX();
                     downY = event.getRawY();
                     downTime = event.getEventTime();
-                    break;
 
-                case MotionEvent.ACTION_POINTER_DOWN:
+                    Object screen = getSwipeScreen(activity);
+                    if (screen == null) {
+                        tracking = false;
+                        break;
+                    }
+
+                    // A double tap toggles the zoom of a picture.
+                    int doubleTapSlop = configuration.getScaledDoubleTapSlop();
+                    if (downTime - lastTapTime <= ViewConfiguration.getDoubleTapTimeout()
+                            && Math.abs(downX - lastTapX) < doubleTapSlop
+                            && Math.abs(downY - lastTapY) < doubleTapSlop) {
+                        zoomedScreen = new WeakReference<>(zoomedScreen.get() == screen ? null : screen);
+                        lastTapTime = 0;
+                    }
+
+                    int screenWidth = activity.getWindow().getDecorView().getWidth();
+                    tracking = zoomedScreen.get() != screen
+                            && downX <= screenWidth * START_EDGE_FRACTION;
+                    break;
+                }
+
+                case MotionEvent.ACTION_POINTER_DOWN: {
+                    // Pinching zooms in on a picture.
+                    tracking = false;
+                    swiping = false;
+                    Object screen = getSwipeScreen(activity);
+                    if (screen != null) zoomedScreen = new WeakReference<>(screen);
+                    break;
+                }
+
                 case MotionEvent.ACTION_CANCEL:
                     tracking = false;
+                    swiping = false;
                     break;
 
                 case MotionEvent.ACTION_MOVE:
                     if (!tracking || swiping) break;
                     float dx = event.getRawX() - downX;
                     float dy = event.getRawY() - downY;
-                    int touchSlop = ViewConfiguration.get(activity).getScaledTouchSlop();
+                    int touchSlop = configuration.getScaledTouchSlop();
                     if (Math.abs(dx) < touchSlop && Math.abs(dy) < touchSlop) break;
 
                     // Decide once, on the first movement past the touch slop.
@@ -324,7 +365,19 @@ public final class SwipeToHomePatch {
                     break;
 
                 case MotionEvent.ACTION_UP:
-                    if (!swiping) break;
+                    if (!swiping) {
+                        // Remember taps for double tap detection.
+                        int slop = configuration.getScaledTouchSlop();
+                        if (event.getEventTime() - downTime < ViewConfiguration.getDoubleTapTimeout()
+                                && Math.abs(event.getRawX() - downX) < slop
+                                && Math.abs(event.getRawY() - downY) < slop) {
+                            lastTapTime = event.getEventTime();
+                            lastTapX = downX;
+                            lastTapY = downY;
+                        }
+                        tracking = false;
+                        break;
+                    }
                     tracking = false;
                     swiping = false;
                     float distance = event.getRawX() - downX;
