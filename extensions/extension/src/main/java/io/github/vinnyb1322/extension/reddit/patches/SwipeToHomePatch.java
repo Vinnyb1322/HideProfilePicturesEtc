@@ -24,11 +24,12 @@ import java.util.List;
 import io.github.vinnyb1322.extension.reddit.Utils;
 
 /**
- * A right swipe on a post's comments or in the full screen media viewer goes to the home feed.
+ * A right swipe from the left edge of a post's comments or the full screen media viewer goes back
+ * to the previous post if the post was opened from one, or else to the home feed.
  * <p>
  * Touches are watched through the activity window callback without consuming them.
- * A swipe is ignored if it starts on something that scrolls horizontally, such as a gallery
- * that is not on its first image.
+ * Only swipes that start near the left edge count, so swiping through the images of a gallery
+ * keeps working. A swipe is also ignored if it starts on a view that scrolls horizontally.
  */
 @SuppressWarnings("unused")
 public final class SwipeToHomePatch {
@@ -55,16 +56,20 @@ public final class SwipeToHomePatch {
     };
 
     /**
+     * Swipes must start within this fraction of the screen width from the left edge.
+     */
+    private static final float START_EDGE_FRACTION = 0.2f;
+    /**
      * Minimum swipe distance as a fraction of the screen width.
      */
     private static final float MIN_DISTANCE_FRACTION = 0.25f;
     private static final long MAX_DURATION_MS = 800;
 
     private static boolean initialized;
-    private static boolean goHomeOnResume;
 
     private static Method getBottomNavScreenMethod;
     private static Method getCurrentScreenMethod;
+    private static Method getScreenBelowMethod;
     private static Method selectTabMethod;
     private static Object homeTab;
 
@@ -121,17 +126,39 @@ public final class SwipeToHomePatch {
             if (getCurrentScreenMethod == null) {
                 getCurrentScreenMethod = bottomNavScreen.getClass().getMethod("getCurrentScreen");
             }
-            Object currentScreen = getCurrentScreenMethod.invoke(bottomNavScreen);
-            if (currentScreen == null) return false;
-
-            String name = currentScreen.getClass().getName();
-            for (String prefix : SWIPE_SCREENS) {
-                if (name.startsWith(prefix)) return true;
-            }
+            return isSwipeScreen(getCurrentScreenMethod.invoke(bottomNavScreen));
         } catch (Exception ex) {
             Utils.logException("isSwipeEnabled failure", ex);
         }
         return false;
+    }
+
+    private static boolean isSwipeScreen(Object screen) {
+        if (screen == null) return false;
+        String name = screen.getClass().getName();
+        for (String prefix : SWIPE_SCREENS) {
+            if (name.startsWith(prefix)) return true;
+        }
+        return false;
+    }
+
+    /**
+     * @return If the screen below the current one is a post, such as when a post was opened
+     * from a link in the comments of another post.
+     */
+    private static boolean isPostBelow(Activity activity) {
+        try {
+            Object bottomNavScreen = getBottomNavScreen(activity);
+            if (bottomNavScreen == null) return false;
+            if (getScreenBelowMethod == null) {
+                // Added during patching.
+                getScreenBelowMethod = bottomNavScreen.getClass().getMethod("patch_getScreenBelow");
+            }
+            return isSwipeScreen(getScreenBelowMethod.invoke(bottomNavScreen));
+        } catch (Exception ex) {
+            Utils.logException("isPostBelow failure", ex);
+            return false;
+        }
     }
 
     /**
@@ -166,11 +193,13 @@ public final class SwipeToHomePatch {
         }
     }
 
+    @SuppressWarnings("deprecation")
     private static void onSwipe(Activity activity) {
         if (isMediaActivity(activity)) {
-            // Close the media viewer, then clear the main activity once it is shown again.
-            goHomeOnResume = true;
+            // The media viewer was opened on top of a post or the feed. Closing it goes back there.
             activity.finish();
+        } else if (isPostBelow(activity)) {
+            activity.onBackPressed();
         } else {
             goHome(activity);
         }
@@ -211,11 +240,6 @@ public final class SwipeToHomePatch {
                 if (window != null && !(window.getCallback() instanceof SwipeWindowCallback)
                         && (isMainActivity(activity) || isMediaActivity(activity))) {
                     window.setCallback(new SwipeWindowCallback(activity, window.getCallback()));
-                }
-
-                if (goHomeOnResume && isMainActivity(activity)) {
-                    goHomeOnResume = false;
-                    goHome(activity);
                 }
             } catch (Exception ex) {
                 Utils.logException("onActivityResumed failure", ex);
@@ -271,7 +295,9 @@ public final class SwipeToHomePatch {
 
             switch (event.getActionMasked()) {
                 case MotionEvent.ACTION_DOWN:
-                    tracking = isSwipeEnabled(activity);
+                    int screenWidth = activity.getWindow().getDecorView().getWidth();
+                    tracking = event.getRawX() <= screenWidth * START_EDGE_FRACTION
+                            && isSwipeEnabled(activity);
                     swiping = false;
                     downX = event.getRawX();
                     downY = event.getRawY();
