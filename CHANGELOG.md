@@ -1,3 +1,9 @@
+## [1.0.0-dev.8](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.7...v1.0.0-dev.8) (2026-10-21)
+
+### 🐛 Bug Fixes
+
+* swipe back to the previous post and keep album swipes ([0af7f45](https://github.com/Vinnyb1322/HideProfilePicturesEtc/commit/0af7f45a1c81251c26657f8ee7dc5a6d17aab379))
+
 ## [1.0.0-dev.7](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.6...v1.0.0-dev.7) (2026-10-18)
 
 ### ✨ New Features

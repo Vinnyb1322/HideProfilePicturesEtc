@@ -14,7 +14,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.0.0-dev.7](https://github.com/Vinnyb1322/HideProfilePicturesEtc/releases/tag/v1.0.0-dev.7)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;13 patches total
+> **[v1.0.0-dev.8](https://github.com/Vinnyb1322/HideProfilePicturesEtc/releases/tag/v1.0.0-dev.8)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;13 patches total
 <details open>
 <summary>📦 Reddit&nbsp;&nbsp;•&nbsp;&nbsp;13 patches</summary>
 <br>
@@ -38,7 +38,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 | [Hide suggested communities](#hide-suggested-communities) | Hides the suggested communities shown in the feed of a subreddit. |  |
 | [Show post author](#show-post-author) | Shows the username of the poster after the subreddit, time posted and link of posts in the feed. |  |
 | [Sort home feed](#sort-home-feed) | Sorts the home feed like old.reddit.com, by Hot by default, instead of the personalized ranking that changes on every refresh. | • Sort |
-| [Swipe to home feed](#swipe-to-home-feed) | Swiping right on a post's comments or in the full screen media viewer goes straight back to the home feed. |  |
+| [Swipe to home feed](#swipe-to-home-feed) | Swiping right from the left edge of a post's comments or the full screen media viewer goes back to the previous post if you came from one, or else to the home feed. |  |
 
 </details>
 

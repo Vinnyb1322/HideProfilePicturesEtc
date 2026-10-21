@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.0.0-dev.7",
+  "version": "1.0.0-dev.8",
   "patches": [
     {
       "name": "Block breaking news notifications",
@@ -439,7 +439,7 @@
     },
     {
       "name": "Swipe to home feed",
-      "description": "Swiping right on a post's comments or in the full screen media viewer goes straight back to the home feed.",
+      "description": "Swiping right from the left edge of a post's comments or the full screen media viewer goes back to the previous post if you came from one, or else to the home feed.",
       "default": true,
       "category": null,
       "compatiblePackages": [
