@@ -1,3 +1,9 @@
+## [1.0.0-dev.9](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.8...v1.0.0-dev.9) (2026-10-21)
+
+### 🐛 Bug Fixes
+
+* let zoomed pictures pan instead of swiping back ([fc2734c](https://github.com/Vinnyb1322/HideProfilePicturesEtc/commit/fc2734c2595171b7e931070ca750db6686ae033a))
+
 ## [1.0.0-dev.8](https://github.com/Vinnyb1322/HideProfilePicturesEtc/compare/v1.0.0-dev.7...v1.0.0-dev.8) (2026-10-21)
 
 ### 🐛 Bug Fixes
